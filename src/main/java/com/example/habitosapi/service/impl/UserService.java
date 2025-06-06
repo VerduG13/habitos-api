@@ -24,7 +24,7 @@ public class UserService implements IUserService {
     public User save(UserDto userDto) {
         Optional<User> existingUser = userRepository.findByEmail(userDto.getEmail());
         if(existingUser.isPresent()) {
-            throw new EmailAlreadyExistsException("Email " + userDto.getEmail() + " already exists");
+            throw new EmailAlreadyExistsException("Email " + userDto.getEmail() + " ya existe");
         }
         User user = UserMapper.toUser(userDto, new User());
         return userRepository.save(user);
@@ -47,10 +47,10 @@ public class UserService implements IUserService {
         Optional<User> existingUser = userRepository.findByEmail(email);
         if(existingUser.isPresent()) {
             if(!password.equals(existingUser.get().getPassword())) {
-                throw new InvalidCredentialsException("Invalid credentials");
+                throw new InvalidCredentialsException("Credenciales inválidas");
             }
         } else {
-            throw new InvalidCredentialsException("Invalid credentials");
+            throw new InvalidCredentialsException("Credenciales inválidas");
         }
         return UserMapper.toUserDto(existingUser.get(), new UserDto());
     }

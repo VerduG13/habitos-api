@@ -30,4 +30,12 @@ public class GlobalExceptionHandler {
         );
         return new ResponseEntity<>(errorResponseDto, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(HabitRegisteredTodayException.class)
+    public ResponseEntity<ErrorResponseDto> handleHabitRegisteredTodayException(HabitRegisteredTodayException e) {
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(
+                e.getMessage(), HttpStatus.BAD_REQUEST
+        );
+        return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);
+    }
 }

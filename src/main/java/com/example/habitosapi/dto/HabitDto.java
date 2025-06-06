@@ -12,4 +12,5 @@ public class HabitDto {
     private int sleep;
     private int moodScore;
     private String registrationDate;
+    private Long userId;
 }
