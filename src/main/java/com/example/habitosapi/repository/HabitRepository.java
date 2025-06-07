@@ -17,6 +17,6 @@ public interface HabitRepository extends JpaRepository<Habit, Long> {
     @Query("SELECT h FROM Habit h WHERE h.user.id = :userId AND h.registrationDate = :date")
     Optional<Habit> findHabitForDay(Long userId, Date date);
 
-    @Query("SELECT h FROM Habit h WHERE h.user.id = :userId AND h.registrationDate >= :from AND h.registrationDate <= :to")
+    @Query("SELECT h FROM Habit h WHERE h.user.id = :userId AND h.registrationDate >= :from AND h.registrationDate <= :to ORDER BY h.registrationDate ASC")
     Optional<List<Habit>> findChartsDataFor(Long userId, Date from, Date to);
 }
